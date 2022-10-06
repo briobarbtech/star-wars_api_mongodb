@@ -44,12 +44,15 @@ def index():
     characters = mongo.db.character.find()
     response = json_util.dumps(characters)
     return Response(response, mimetype='application/json')
+
+### to get characters by id Get request to http://localhost:5000/characters/<id>
 @app.route('/characters/<id>', methods=['GET'])
 def getPage(id):
     character = mongo.db.character.find_one({'_id': ObjectId(id)})
     response = json_util.dumps(character)
     return Response(response, mimetype='application/json')
 @app.errorhandler(404)
+### response default for errors
 def not_found(error=None):
     message = {'message': 'Resource Not Found: ' + request.url,'status' : 404}
     return message
