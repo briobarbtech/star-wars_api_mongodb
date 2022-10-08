@@ -18,16 +18,14 @@ mongo = PyMongo(app)
 ### to report Post request to http://localhost:5000/report
 @app.route('/report', methods=["POST"])
 def report_sighting():
-    report = Report(request.json['userId'],request.json['id'],request.json['title'],request.json['body'])
+    report = Report(request.json['name'],request.json['title'],request.json['body'])
     id = mongo.db.report.insert_one({
-        "userId":report.userId,
-        "id":report.id,
+        "name":report.name,
         "title":report.title,
         "body":report.body})
     response = {
         "id":str(id),
-        "userId":report.userId,
-        "id":report.id,
+        "name":report.name,
         "title":report.title,
         "body":report.body}
     return response, http.HTTPStatus.CREATED
