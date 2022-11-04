@@ -1,4 +1,3 @@
-character_list = []
 class Character:
     name: str
     height: str
