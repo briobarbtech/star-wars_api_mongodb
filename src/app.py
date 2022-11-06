@@ -7,7 +7,7 @@ from models.resources import paginar_10
 
 app = Flask(__name__)
 ### Defino una propiedad que va a decir donde buscar MongoDB. MongoDB siempre trabaja en el puerto 27017
-app.config['MONGO_URI']='mongodb://localhost/starwarsdb'
+app.config['MONGO_URI']='mongodb://mydb/starwarsdb'
 ### Le paso la configuración de mi app a PyMongo
 mongo = PyMongo(app)
 
@@ -49,4 +49,4 @@ def not_found(error=None):
     return message
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(host='0.0.0.0',port=5000,debug=True)
