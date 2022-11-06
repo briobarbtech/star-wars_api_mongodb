@@ -3,7 +3,6 @@ from flask_pymongo import PyMongo
 import http as http
 from bson import json_util, ObjectId
 import json
-from models.report import Report
 from models.resources import paginar_10
 
 app = Flask(__name__)
