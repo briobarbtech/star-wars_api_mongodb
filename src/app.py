@@ -11,7 +11,6 @@ app.config['MONGO_URI']='mongodb://mydb/starwarsdb'
 ### Le paso la configuración de mi app a PyMongo
 mongo = PyMongo(app)
 
-
 ### to create a character POST request to http://localhost:5000/character
 @app.route('/character', methods=['POST'])
 def create_character():
