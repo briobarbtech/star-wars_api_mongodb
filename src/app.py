@@ -6,30 +6,12 @@ import json
 from models.report import Report
 from models.resources import paginar_10
 
-### Inicializo Flask
 app = Flask(__name__)
 ### Defino una propiedad que va a decir donde buscar MongoDB. MongoDB siempre trabaja en el puerto 27017
 app.config['MONGO_URI']='mongodb://localhost/starwarsdb'
 ### Le paso la configuración de mi app a PyMongo
 mongo = PyMongo(app)
 
-### to report Post request to http://localhost:5000/report
-@app.route('/report', methods=["POST"])
-def report_sighting():
-    report = Report(request.json['name'],request.json['title'],request.json['body'], request.json['date'])
-    id = mongo.db.report.insert_one({
-        "name":report.name,
-        "title":report.title,
-        "body":report.body,
-        "date":report.date})
-    return {'message':'Éxito'},http.HTTPStatus.CREATED
-
-### to get all reports do GET request to http://localhost:5000/report
-@app.route('/report', methods=["GET"])
-def get_reports():
-    reports = mongo.db.report.find()
-    response = json_util.dumps(reports)
-    return Response(response, mimetype='application/json'),http.HTTPStatus.OK
 
 ### to create a character POST request to http://localhost:5000/character
 @app.route('/character', methods=['POST'])
