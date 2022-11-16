@@ -1,13 +1,13 @@
 from flask import Flask, Response, request
 from flask_pymongo import PyMongo
 import http as http
-from bson import json_util, ObjectId
+from bson import json_util
 import json
 from models.resources import paginar_10
 
 app = Flask(__name__)
 ### Defino una propiedad que va a decir donde buscar MongoDB. MongoDB siempre trabaja en el puerto 27017
-app.config['MONGO_URI']='mongodb://mydb/starwarsdb'
+app.config['MONGO_URI']='mongodb://localhost/starwarsdb'
 ### Le paso la configuración de mi app a PyMongo
 mongo = PyMongo(app)
 
